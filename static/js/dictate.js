@@ -1,9 +1,6 @@
 (function(window){
 
 	// Defaults
-	// var SERVER = "ws://bark.phon.ioc.ee:82/dev/duplex-speech-api/ws/speech";
-	// var SERVER_STATUS = "ws://bark.phon.ioc.ee:82/dev/duplex-speech-api/ws/status";
-	// var REFERENCE_HANDLER = "http://bark.phon.ioc.ee:82/dev/duplex-speech-api/dynamic/reference";
 	var SERVER = "ws://bark.phon.ioc.ee:82/dev/duplex-speech-api/ws/speech";
 	var SERVER_STATUS = "ws://bark.phon.ioc.ee:82/dev/duplex-speech-api/ws/status";
 	var REFERENCE_HANDLER = "http://bark.phon.ioc.ee:82/dev/duplex-speech-api/dynamic/reference";
