@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6690c604-78a0-413e-aa4c-4304391be275}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>app.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <InterpreterId>CondaEnv|CondaEnv|Lucida Command Center</InterpreterId>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <PythonWsgiHandler>{StartupModule}.wsgi_app</PythonWsgiHandler>
+    <WebBrowserPort>3000</WebBrowserPort>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="apache\install_apache.sh" />
+    <Content Include="clear_db.sh" />
+    <Content Include="config.properties" />
+    <Content Include="data\class_CA.txt" />
+    <Content Include="data\class_DIG.txt" />
+    <Content Include="data\class_FACE.txt" />
+    <Content Include="data\class_IMC.txt" />
+    <Content Include="data\class_IMM.txt" />
+    <Content Include="data\class_IMM_DCM_QA_WE.txt" />
+    <Content Include="data\class_IMM_QA.txt" />
+    <Content Include="data\class_MS.txt" />
+    <Content Include="data\class_QA.txt" />
+    <Content Include="data\class_WE.txt" />
+    <Content Include="data\class_WE_DCM.txt" />
+    <Content Include="gen_certs.sh" />
+    <Content Include="static\css\asr.css" />
+    <Content Include="static\css\bootstrap.min.css" />
+    <Content Include="static\css\sticky-footer.css" />
+    <Content Include="static\css\thumbnail.css" />
+    <Content Include="static\image\djinn.png" />
+    <Content Include="static\image\lucida.ico" />
+    <Content Include="static\image\lucida.jpg" />
+    <Content Include="static\image\microphone.png" />
+    <Content Include="static\image\microphone_off.png" />
+    <Content Include="static\image\pause.png" />
+    <Content Include="static\image\pause2.png" />
+    <Content Include="static\image\speech_bubble.png" />
+    <Content Include="static\image\speech_bubble_page.png" />
+    <Content Include="static\image\speech_bubble_page_r.png" />
+    <Content Include="static\image\speech_bubble_reverse.png" />
+    <Content Include="static\image\user.png" />
+    <Content Include="static\image\volume_off.png" />
+    <Content Include="static\image\volume_on.png" />
+    <Content Include="static\js\bootstrap.min.js" />
+    <Content Include="static\js\calendar.js" />
+    <Content Include="static\js\dictate.js" />
+    <Content Include="static\js\jquery-1.10.2.min.js" />
+    <Content Include="static\js\mob.js" />
+    <Content Include="static\js\recorder.js" />
+    <Content Include="static\js\recorderWorker.js" />
+    <Content Include="static\js\resultSpeaker.js" />
+    <Content Include="static\js\speech-streamer.js" />
+    <Content Include="static\js\speex.min.js" />
+    <Content Include="templates\base.html" />
+    <Content Include="templates\contact.html" />
+    <Content Include="templates\create.html" />
+    <Content Include="templates\index.html" />
+    <Content Include="templates\infer.html" />
+    <Content Include="templates\learn.html" />
+    <Content Include="templates\login.html" />
+    <Content Include="templates\profile.html" />
+    <Content Include="templates\signup.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="app.py" />
+    <Compile Include="controllers\AccessManagement.py" />
+    <Compile Include="controllers\Config.py" />
+    <Compile Include="controllers\ConfigChecker.py" />
+    <Compile Include="controllers\Create.py" />
+    <Compile Include="controllers\Database.py" />
+    <Compile Include="controllers\dcm\Decision.py" />
+    <Compile Include="controllers\dcm\IMMDCM.py" />
+    <Compile Include="controllers\dcm\WEDCM.py" />
+    <Compile Include="controllers\dcm\__init__.py" />
+    <Compile Include="controllers\Decision.py" />
+    <Compile Include="controllers\Graph.py" />
+    <Compile Include="controllers\Infer.py" />
+    <Compile Include="controllers\Learn.py" />
+    <Compile Include="controllers\LoginForm.py" />
+    <Compile Include="controllers\Main.py" />
+    <Compile Include="controllers\Memcached.py" />
+    <Compile Include="controllers\Parser.py" />
+    <Compile Include="controllers\QueryClassifier.py" />
+    <Compile Include="controllers\RegistrationForm.py" />
+    <Compile Include="controllers\Service.py" />
+    <Compile Include="controllers\ThriftClient.py" />
+    <Compile Include="controllers\User.py" />
+    <Compile Include="controllers\Utilities.py" />
+    <Compile Include="controllers\WebSocket.py" />
+    <Compile Include="controllers\__init__.py" />
+    <Compile Include="lucidaservice\constants.py" />
+    <Compile Include="lucidaservice\LucidaService.py" />
+    <Compile Include="lucidaservice\ttypes.py" />
+    <Compile Include="lucidaservice\__init__.py" />
+    <Compile Include="lucidatypes\constants.py" />
+    <Compile Include="lucidatypes\ttypes.py" />
+    <Compile Include="lucidatypes\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="apache" />
+    <Folder Include="controllers" />
+    <Folder Include="controllers\dcm" />
+    <Folder Include="data" />
+    <Folder Include="lucidaservice" />
+    <Folder Include="lucidatypes" />
+    <Folder Include="static\" />
+    <Folder Include="static\css" />
+    <Folder Include="static\image" />
+    <Folder Include="static\js" />
+    <Folder Include="templates" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|Lucida Command Center" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

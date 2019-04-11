@@ -1,0 +1,3 @@
+D:\AI\commandcenter\obj\Debug\commandcenter.pyproj.CoreCompileInputs.cache
+D:\AI\commandcenter\bin\Microsoft.PythonTools.WebRole.dll
+D:\AI\commandcenter\bin\wfastcgi.py

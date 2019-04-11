@@ -16,6 +16,6 @@ class FakeSecHead(object):
             return self.fp.readline()
 
 cp = ConfigParser.SafeConfigParser()
-cp.readfp(FakeSecHead(open("../config.properties")))
+cp.readfp(FakeSecHead(open("config.properties")))
 port_dic = dict(cp.items('asection'))
 cmd_port = int(port_dic['cmd_port'])

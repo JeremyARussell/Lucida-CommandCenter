@@ -19,7 +19,7 @@ class Service(object):
 
     def get_host_port(self):
         try:
-            host = 'localhost'
+            host = 'localhost'# TODO - Need to replace with a dynamic service finding system - good candidate is to finish the full CREATE system
             tcp_addr = os.environ.get(self.name + '_PORT_' + str(self.port) + '_TCP_ADDR')
             if tcp_addr:
                 log('TCP address is resolved to ' + tcp_addr)

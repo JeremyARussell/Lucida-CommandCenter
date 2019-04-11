@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 import sys, glob, os
 sys.path.insert(0, glob.glob(os.path.abspath(os.path.dirname(__file__)) +
-    '/../../tools/thrift-0.9.3/lib/py/build/lib*')[0])
+    '/thrift-0.9.3/lib/py/build/lib*')[0])
 
 from controllers import *
 from controllers.Parser import cmd_port
@@ -27,7 +27,7 @@ app.register_blueprint(Learn.learn)
 app.register_blueprint(Infer.infer)
 
 # Session.
-app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'# TODO - Any secret key ever should not be in the source code, this will need to be turned into configuration
 
 def flask_listener():
 

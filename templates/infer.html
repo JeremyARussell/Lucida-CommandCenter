@@ -100,14 +100,6 @@
 							src="static/image/microphone.png">WebKit</button>
 				</div>
 			</tr>
-			<tr>
-				<td class="">
-					<br>
-					<a href="http://djinn.clarity-lab.org">
-					<img src="{{ url_for('static', filename='image/djinn.png')}}" style="float: left; width: 100px; margin-left: 5px">
-					</a>
-				</td>
-			</tr>
 		</table>
 	</div>
 
@@ -134,5 +126,11 @@ var speakable = "{{ result }}";
 if (speakable !== "" && speakable !== "None") {
 	textToVoice("{{ result }}");
 }
+$('#trans').keypress(function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        this.form.submit();
+    }
+});
 </script>
 {% endblock %}
