@@ -1,7 +1,7 @@
 from flask import *
-from AccessManagement import login_required
-from ThriftClient import thrift_client
-from Service import Service
+from controllers.AccessManagement import login_required
+from controllers.ThriftClient import thrift_client
+from controllers.Service import Service
 
 create = Blueprint('create', __name__, template_folder='templates')
 

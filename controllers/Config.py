@@ -1,7 +1,7 @@
-from Service import Service
-from Graph import Graph, Node
-from Parser import port_dic
-from dcm import*
+from controllers.Service import Service
+from controllers.Graph import Graph, Node
+from controllers.Parser import port_dic
+from controllers.dcm import *
 
 # The maximum number of texts or images for each user.
 # This is to prevent the server from over-loading.
@@ -38,10 +38,10 @@ class firstWorkflow(workFlow):
 
 	
 	def processCurrentState(self,inputModifierText,inputModifierImage):
-		print "Executing state logic";
+		print ("Executing state logic");
 		
 		if(self.currentState==0):
-			print "State 0";
+			print ("State 0");
 			self.currentState = 1; # This decides what state to go to next
 			# batchedData contains a list of service Requests. The function parameter is serviceRequestData(serviceName,dataToPassToService).
 			# Eg. "QA",inputModifierText[0]) means to pass to QA microservice with whatever was in the inputModifierText[0] (The text from the Lucida prompt))
@@ -49,7 +49,7 @@ class firstWorkflow(workFlow):
 			return;
 		
 		if(self.currentState==1):
-			print "State 1";
+			print ("State 1");
 			# [1] is being passed as the input. This value came from: serviceRequestData("QA",inputModifierText[0])
 			# It is based on the positioning of the previous serviceRequestData batch.
 			# Eg. [0] = serviceRequestData("QA",[unicode("How old is Johann")], [1] = serviceRequestData("QA",inputModifierText[0])

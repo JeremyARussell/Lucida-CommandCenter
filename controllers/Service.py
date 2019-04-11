@@ -1,5 +1,5 @@
 import os
-from Utilities import log
+from controllers.Utilities import log
 
 class Service(object):
     LEARNERS = { 'audio' : [], 'image' : [], 'text' : [] }
@@ -8,12 +8,12 @@ class Service(object):
         self.name = name
         self.port = port
         if not (input_type == 'text' or input_type == 'image'):
-            print 'Can only process text and image'
+            print ('Can only process text and image')
             exit()
         self.input_type = input_type
         if not learn_type is None:
             if not learn_type in Service.LEARNERS:
-                print 'Unrecognized learn_type'
+                print ('Unrecognized learn_type')
                 exit()
             Service.LEARNERS[learn_type].append(self)
 

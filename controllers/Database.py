@@ -1,10 +1,10 @@
 import hashlib, uuid
 from pymongo import MongoClient
 from base64 import b64encode
-from Utilities import log
+from controllers.Utilities import log
 import os
-import Config
-from Memcached import memcached
+import controllers.Config
+from controllers.Memcached import memcached
 
 
 class Database(object):
@@ -74,8 +74,8 @@ class Database(object):
 	def hash_password(self, algorithm, salt, password):
 		m = hashlib.new(algorithm)
 		password = password.encode('utf-8')
-		s = salt + password
-		m.update(s)
+		s = salt + str(password)
+		m.update(s.encode('utf-8'))
 		password_hash = m.hexdigest()
 		return "$".join([algorithm, salt, password_hash])
 

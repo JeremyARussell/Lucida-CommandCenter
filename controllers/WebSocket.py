@@ -6,27 +6,27 @@
 Reads speech data via websocket requests, sends it to Redis, waits for results from Redis and
 forwards to client via websocket
 """
-import sys
-import logging
-import json
 import codecs
-import os.path
-import uuid
-import time
-import threading
 import functools
-from Queue import Queue
+import json
+import logging
+import os.path
+import sys
+import threading
+import time
+import uuid
+from queue import Queue
 
+import tornado.concurrent
+import tornado.gen
 import tornado.ioloop
 import tornado.options
 import tornado.web
 import tornado.websocket
-import tornado.gen
-import tornado.concurrent
-
-from Parser import cmd_port
-
 from tornado.options import define
+
+from controllers.Parser import cmd_port
+
 define("port", default=cmd_port, help="run on the given port", type=int)
 
 STATUS_EOS = -1

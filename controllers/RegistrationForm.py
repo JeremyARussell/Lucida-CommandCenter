@@ -1,5 +1,5 @@
 from wtforms import Form, TextField, PasswordField, validators, ValidationError
-from Database import database
+from controllers.Database import database
 import re
 
 
@@ -51,10 +51,7 @@ class RegistrationForm(Form):
 							 min=8, message=too_short_error_msg('Passwords', 8)),
 							 validators.Regexp(
 							 re.compile(r'\d.*([A-Z]|[a-z])|([A-Z]|[a-z]).*\d'),
-							 message='Passwords must contain at least one letter and one number'),
-							 validators.Regexp(
-							 re.compile(r'^$|^[\w]+$'),
-							 message=special_char_error_msg('Passwords'))])
+							 message='Passwords must contain at least one letter and one number')])
 
 	password2 = PasswordField('Repeat Password', 
 							[validators.EqualTo('password1', message='Passwords do not match')])

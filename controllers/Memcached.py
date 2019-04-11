@@ -1,5 +1,5 @@
 from memcache import Client
-from Utilities import log
+from controllers.Utilities import log
 import os
 
 

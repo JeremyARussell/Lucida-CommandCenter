@@ -1,16 +1,20 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import unicode_literals
+from __future__ import absolute_import, division, unicode_literals
 
-import sys, glob, os
+import glob
+import logging
+import os
+import sys
+from threading import Thread
+
+from flask import Flask, Blueprint
+
+from controllers import Main, User, Create, Learn, Infer
+from controllers.Parser import cmd_port
+from controllers import WebSocket
+
 sys.path.insert(0, glob.glob(os.path.abspath(os.path.dirname(__file__)) +
     '/thrift-0.9.3/lib/py/build/lib*')[0])
 
-from controllers import *
-from controllers.Parser import cmd_port
-from flask import *
-from threading import Thread
-import logging
 
 
 # Initialize the Flask app with the template folder address.
@@ -33,17 +37,17 @@ def flask_listener():
 
     # For https (with ASR capability)
     if os.environ.get('SECURE_HOST'):
-        print 'Starting secure flask'
+        print ('Starting secure flask')
         app.run(host='0.0.0.0', port=3000, debug=True, use_reloader=False,
                 threaded=True, ssl_context=('certs/server.crt', 'certs/server.key'))
     # For http (without ASR capability)
     else:
-        print 'Starting non-secure flask'
+        print ('Starting non-secure flask')
         app.run(host='0.0.0.0', port=3000, debug=True, use_reloader=False,
                 threaded=True)
 
 def web_socket_listener():
-    print 'Start web socket at ' + str(cmd_port)
+    print ('Start web socket at ' + str(cmd_port))
     logging.basicConfig(level=logging.DEBUG,
             format="%(levelname)8s %(asctime)s %(message)s ")
     logging.debug('Starting up server')
@@ -51,13 +55,13 @@ def web_socket_listener():
 
     # For wss (with ASR capability)
     if os.environ.get('SECURE_HOST'):
-        print 'Starting secure web socket'
+        print ('Starting secure web socket')
         WebSocket.Application().listen(cmd_port, ssl_options={
             "certfile":"certs/server.crt",
             "keyfile":"certs/server.key"})
     # For ws (without ASR capability)
     else:
-        print 'Starting non-secure web socket'
+        print ('Starting non-secure web socket')
         WebSocket.Application().listen(cmd_port)
 
     WebSocket.tornado.ioloop.IOLoop.instance().start()

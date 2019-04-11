@@ -1,11 +1,11 @@
 from flask import *
-from Database import database
-from AccessManagement import login_required
-from ThriftClient import thrift_client
-from QueryClassifier import query_classifier
-from Utilities import log, check_image_extension
-from Parser import port_dic
-import Config
+from controllers.Database import database
+from controllers.AccessManagement import login_required
+from controllers.ThriftClient import thrift_client
+from controllers.QueryClassifier import query_classifier
+from controllers.Utilities import log, check_image_extension
+from controllers.Parser import port_dic
+import controllers.Config
 import os
 import json
 
@@ -26,7 +26,7 @@ def generic_infer_route(form, upload_file):
 			# Classify the query.
 			speech_input = form['speech_input'] if 'speech_input' in form \
 				else ''
-			print 'Query: ', speech_input
+			print ('Query: ', speech_input)
 			image_input = [upload_file.read()] if upload_file else None
 			lucida_id = session['username']
 			# Check if context is saved for Lucida user
@@ -42,7 +42,7 @@ def generic_infer_route(form, upload_file):
 			try:
 				options['result'] = thrift_client.infer(lucida_id, node.service_name, speech_input, image_input)
 			except Exception as ex:
-				print "Exception raised while trying to infer", ex.message
+				print ("Exception raised while trying to infer", ex.message)
 			log('Result ' + options['result'])
 			# Check if Calendar service is needed.
 			# If so, JavaScript needs to receive the parsed dates.
@@ -80,10 +80,10 @@ def api_infer_route():
 		abort (403)
 
 	session['logged_in'] = True
-	print 'Logged in as: ', session['username']
+	print ('Logged in as: ', session['username'])
 
 	options = generic_infer_route(request.form, request.files['file'] if 'file' in request.files else None)
 
-        if 'errno' in options:
-                return json.dumps(options), options['errno']
+	if 'errno' in options:
+			return json.dumps(options), options['errno']
 	return json.dumps(options), 200

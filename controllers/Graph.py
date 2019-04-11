@@ -1,5 +1,5 @@
-from Service import Service
-from Queue import Queue
+from controllers.Service import Service
+from queue import Queue
 
 
 class Node(object):
@@ -38,14 +38,14 @@ class Graph(object):
                 to_node = self.get_node(to_index)
                 if to_node in has_seen:
                     if 'DCM' not in curr_node.service_name:
-                        print 'Invalid graph: cyclic without decision node'
+                        print ('Invalid graph: cyclic without decision node')
                         exit()
                 else:
                     fringe.put(to_node)
                     has_seen.add(to_node)
         global_has_seen = has_seen.union(global_has_seen)
         if len(global_has_seen) < len(node_list):
-            print 'Invalid graph: unconnected'
+            print ('Invalid graph: unconnected')
         # Create a set of service names for fast look-up.
         self.service_names = set()
         for node in node_list:
@@ -53,7 +53,7 @@ class Graph(object):
 
     def get_node(self, index):
         if index  < 0 or index >= len(self.node_list):
-            print 'Invalid index'
+            print ('Invalid index')
             exit()
         else:
             return self.node_list[index]
@@ -62,7 +62,7 @@ class Graph(object):
         for index in curr_node.to_indices:
             if self.get_node(index).service_name == next_service_name:
                     return index
-        print 'Invalid next service ' + next_service_name
+        print ('Invalid next service ' + next_service_name)
         exit()
 
     def to_string(self):

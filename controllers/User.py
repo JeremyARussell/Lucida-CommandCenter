@@ -1,8 +1,8 @@
 from flask import *
-from Database import database
-from RegistrationForm import RegistrationForm
-from LoginForm import LoginForm
-from AccessManagement import login_required
+from controllers.Database import database
+from controllers.RegistrationForm import RegistrationForm
+from controllers.LoginForm import LoginForm
+from controllers.AccessManagement import login_required
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 
 user = Blueprint('user', __name__, template_folder='templates')
