@@ -2,8 +2,6 @@
 .pydevproject
 .settings
 gen-py
-lucidaservice
-lucidatypes
 venv
 *.pyc
 config
