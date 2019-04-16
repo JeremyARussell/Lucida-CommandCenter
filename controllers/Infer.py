@@ -1,13 +1,15 @@
-from flask import *
-from controllers.Database import database
-from controllers.AccessManagement import login_required
-from controllers.ThriftClient import thrift_client
-from controllers.QueryClassifier import query_classifier
-from controllers.Utilities import log, check_image_extension
-from controllers.Parser import port_dic
-import controllers.Config
-import os
 import json
+import os
+
+from flask import Blueprint, Flask, Request, Response
+
+import controllers.Config
+from controllers.AccessManagement import login_required
+from controllers.Database import database
+from controllers.Parser import port_dic
+from controllers.QueryClassifier import query_classifier
+from controllers.ThriftClient import thrift_client
+from controllers.Utilities import check_image_extension, log
 
 infer = Blueprint('infer', __name__, template_folder='templates')
 
