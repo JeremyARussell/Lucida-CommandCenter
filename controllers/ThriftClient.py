@@ -26,6 +26,7 @@ class FuncThread(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
+        #TODO - Add try/catch to get at a no service found type of issue, not to mention other kinds of exceptions that may occur
         self._target(*self._args)
 
 
