@@ -1,8 +1,8 @@
-from thrift.transport import TSocket, TTransport
-
 import threading
 
 from flask import *
+from thrift.protocol import TBinaryProtocol
+from thrift.transport import TSocket, TTransport
 
 import controllers.Config
 from controllers.Config import WFList
@@ -11,8 +11,6 @@ from controllers.dcm import *
 from controllers.Utilities import log
 from lucidaservice import LucidaService
 from lucidatypes.ttypes import QueryInput, QuerySpec
-from thrift.protocol import TBinaryProtocol
-from thrift.transport import TSocket, TTransport
 
 #import importlib
 
