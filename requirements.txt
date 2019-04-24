@@ -16,7 +16,7 @@ dockerpty==0.4.1
 docopt==0.6.2
 # functools32==3.2.3.post2
 futures==3.0.5
-# greenlet==0.4.15
+greenlet==0.4.15
 html5lib==0.999999999
 httplib2==0.10.3
 ipaddress==1.0.18
