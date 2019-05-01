@@ -45,13 +45,19 @@ def generic_infer_route(form, upload_file):
 			try:
 				options['result'] = thrift_client.infer(lucida_id, node.service_name, speech_input, image_input)
 			except Exception as ex:
-				print(("Exception raised while trying to infer", ex.args))
-			log('Result ' + options['result'])
-			# Check if Calendar service is needed.
-			# If so, JavaScript needs to receive the parsed dates.
-			if services_needed.has_service('CAWF'):
-				options['dates'] = options['result']
-				options['result'] = None
+				print("Exception raised while trying to infer", ex.args)
+				options['error'] = str(ex)
+				raise
+			if 'result' in options:
+				log('Result ' + options['result'])
+				# Check if Calendar service is needed.
+				# If so, JavaScript needs to receive the parsed dates.
+				if services_needed.has_service('CAWF'):
+					options['dates'] = options['result']
+					options['result'] = None
+			else:
+				options['error'] = "Result was empty."
+
 	except Exception as e:
 		log(e)
 		options['errno'] = "Unknown"

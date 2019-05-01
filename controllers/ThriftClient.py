@@ -132,6 +132,7 @@ class ThriftClient(object):
             self.threadResults = []
             threadList = []
             threadID = 0
+            returnValue = ""
             # This is where batched execution initalizes and begins
             for x in workflow.batchedData:
                 print(("_____Thread" + str(threadID) + "," +
@@ -139,7 +140,10 @@ class ThriftClient(object):
                 # Execute the desired microservice
                 threadList.append(FuncThread(
                     self.executeThreadServiceRequest, x.serviceName, x.argumentData, LUCID, threadID))
-                threadList[threadID].start()
+                try:
+                    threadList[threadID].start()
+                except:
+                    raise Exception("The service thread was not able to start. Something isn't working quite right.")
                 threadID += 1
 
             threadID = 0
@@ -147,11 +151,15 @@ class ThriftClient(object):
             for x in workflow.batchedData:
                 threadList[threadID].join()
                 print(("============ThreadID" + str(threadID)))
-                print(("Output:" + self.threadResults[threadID]))
-                resultText.insert(threadID, self.threadResults[threadID])
-                threadID += 1
+                if not self.threadResults == []:
+                    print(("Output:" + self.threadResults[threadID]))
+                    resultText.insert(threadID, self.threadResults[threadID])
+                    threadID += 1
+                    returnValue = resultText[threadID]
+                else:
+                    raise Exception("out The service thread was not able to start. Something isn't working quite right for " + x.serviceName)
 
-        return resultText[0]
+        return returnValue
 
 
 thrift_client = ThriftClient(controllers.Config.SERVICES)
