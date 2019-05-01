@@ -157,7 +157,7 @@ class ThriftClient(object):
                     threadID += 1
                     returnValue = resultText[threadID]
                 else:
-                    raise Exception("out The service thread was not able to start. Something isn't working quite right for " + x.serviceName)
+                    raise Exception("out The service thread was not able to start. Something isn't working quite right for service:" + x.serviceName)
 
         return returnValue
 
