@@ -31,16 +31,17 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'# TODO - Any secret key ever sh
 
 def flask_listener():
 
-    # For https (with ASR capability)
-    if os.environ.get('SECURE_HOST'):
-        print 'Starting secure flask'
-        app.run(host='0.0.0.0', port=3000, debug=True, use_reloader=False,
-                threaded=True, ssl_context=('certs/server.crt', 'certs/server.key'))
-    # For http (without ASR capability)
-    else:
-        print 'Starting non-secure flask'
-        app.run(host='0.0.0.0', port=3000, debug=True, use_reloader=False,
-                threaded=True)
+        # For https (with ASR capability)
+        if os.environ.get('SECURE_HOST') == 'True':
+            print 'Starting secure flask'
+            app.run(host='0.0.0.0', port=3000, debug=True, use_reloader=False,
+                    threaded=True, ssl_context=('certs/server.crt', 'certs/server.key'))
+        
+            # For http (without ASR capability)
+        else:
+            print 'Starting non-secure flask'
+            app.run(host='0.0.0.0', port=3000, debug=True, use_reloader=False,
+                    threaded=True)
 
 def web_socket_listener():
     print 'Start web socket at ' + str(cmd_port)
