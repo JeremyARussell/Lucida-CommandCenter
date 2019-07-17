@@ -51,7 +51,7 @@ def web_socket_listener():
     WebSocket.tornado.options.parse_command_line()
 
     # For wss (with ASR capability)
-    if os.environ.get('SECURE_HOST'):
+    if os.environ.get('SECURE_HOST') == 'True':
         print 'Starting secure web socket'
         WebSocket.Application().listen(cmd_port, ssl_options={
             "certfile":"certs/server.crt",
