@@ -43,16 +43,21 @@ def generic_infer_route(form, upload_file):
 				options['result'] = thrift_client.infer(lucida_id, node.service_name, speech_input, image_input)
 			except Exception as ex:
 				print "Exception raised while trying to infer", ex.message
-			log('Result ' + options['result'])
-			# Check if Calendar service is needed.
-			# If so, JavaScript needs to receive the parsed dates.
-			if services_needed.has_service('CAWF'):
-				options['dates'] = options['result']
-				options['result'] = None
+				options['error'] = str(ex)
+				raise
+			if 'result' in options:
+				log('Result ' + options['result'])
+				# Check if Calendar service is needed.
+				# If so, JavaScript needs to receive the parsed dates.
+				if services_needed.has_service('CAWF'):
+					options['dates'] = options['result']
+					options['result'] = None
+			else:
+				options['error'] = "Result was empty."
 	except Exception as e:
 		log(e)
 		options['errno'] = "Unknown"
-		options['error'] = str(e)
+		options['error'] = str(e.message)
 		if 'code' in e and re.match("^4\d\d$", str(e.code)):
 			options['errno'] = e.code
 		if str(e) == 'TSocket read 0 bytes':
@@ -84,6 +89,6 @@ def api_infer_route():
 
 	options = generic_infer_route(request.form, request.files['file'] if 'file' in request.files else None)
 
-        if 'errno' in options:
-                return json.dumps(options), options['errno']
+	if 'errno' in options:
+		return json.dumps(options), options['errno']
 	return json.dumps(options), 200
