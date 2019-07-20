@@ -97,8 +97,7 @@ class ThriftClient(object):
 			client.learn(str(LUCID),
 				self.create_query_spec('knowledge', [knowledge_input]))
 			transport.close()
-            
-            
+
 			# Example usage
 	def executeThreadServiceRequest(self,service_name, inputData, LUCID, threadIDValue):
 		print("Thread ", threadIDValue, "executing", service_name, "with input", inputData)
@@ -108,13 +107,9 @@ class ThriftClient(object):
 		query_input_list = [self.create_query_input(service.input_type, inputData, tag_list)]
 		resultText = self.send_query(LUCID, service_name, query_input_list)
 		self.threadResults.insert(threadIDValue, resultText)
-		
- 
-
 
 # TODO: split function into separate functions (DCM, creating QuerySpec)
 	def infer(self, LUCID, workflow_name, text_data, image_data):
-
 
 		response_data = { 'text': text_data, 'image': image_data }
 		self.threadResults = []
@@ -125,7 +120,6 @@ class ThriftClient(object):
 		workflow.__init__()
 		resultText = response_data['text']
 		resultImage = [response_data['image']]
-
 
 		while not workflow.isEnd:
 			
@@ -142,6 +136,7 @@ class ThriftClient(object):
 			self.threadResults = []
 			threadList = []
 			threadID = 0
+			returnValue = ""
 			#This is where batched execution initalizes and begins
 			for x in workflow.batchedData:
 				print "_____Thread" + str(threadID) + "," +  str(x.serviceName) + "," + str(x.argumentData)
@@ -150,7 +145,7 @@ class ThriftClient(object):
 				try:
 					threadList[threadID].start()
 				except:
-					raise Exception("The service thread was not able to start. Something isn't working quite right.")
+					raise
 				threadID+=1
 
 			threadID = 0
@@ -158,13 +153,14 @@ class ThriftClient(object):
 			for x in workflow.batchedData:
 				threadList[threadID].join()
 				print "============ThreadID" + str(threadID)
-				print "Output:" + self.threadResults[threadID]
-				resultText.insert(threadID, self.threadResults[threadID])
-				threadID+=1
 
-
-
-                
-		return resultText[0]
+				if not self.threadResults == []:
+					print(("Output:" + self.threadResults[threadID]))
+					resultText.insert(threadID, self.threadResults[threadID])
+					threadID += 1
+					returnValue = resultText[threadID]
+				else:
+					raise Exception("The service thread was not able to start. Something isn't working quite right for " + x.serviceName)
+		return returnValue
 
 thrift_client = ThriftClient(Config.SERVICES)
