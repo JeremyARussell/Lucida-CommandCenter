@@ -37,6 +37,10 @@
     <Content Include="data\class_WE.txt" />
     <Content Include="data\class_WE_DCM.txt" />
     <Content Include="gen_certs.sh" />
+    <Content Include="lucidaservice.thrift" />
+    <Content Include="lucidatypes.thrift" />
+    <Content Include="README.md" />
+    <Content Include="requirements.txt" />
     <Content Include="static\css\asr.css" />
     <Content Include="static\css\bootstrap.min.css" />
     <Content Include="static\css\sticky-footer.css" />
