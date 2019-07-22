@@ -145,7 +145,7 @@ class ThriftClient(object):
 				try:
 					threadList[threadID].start()
 				except:
-					raise
+					raise Exception("The service thread was not able to start. Something isn't working quite right.")
 				threadID+=1
 
 			threadID = 0
@@ -157,8 +157,8 @@ class ThriftClient(object):
 				if not self.threadResults == []:
 					print(("Output:" + self.threadResults[threadID]))
 					resultText.insert(threadID, self.threadResults[threadID])
+					returnValue = resultText[threadID]#TODO - This is a ticking timebomb, it will only take the last result pulled in this for loop so that needs fixed.
 					threadID += 1
-					returnValue = resultText[threadID]
 				else:
 					raise Exception("The service thread was not able to start. Something isn't working quite right for " + x.serviceName)
 		return returnValue
