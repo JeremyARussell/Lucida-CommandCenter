@@ -25,6 +25,7 @@ app.register_blueprint(User.user)
 app.register_blueprint(Create.create)
 app.register_blueprint(Learn.learn)
 app.register_blueprint(Infer.infer)
+app.register_blueprint(Dictate.dictate)
 
 # Session.
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'# TODO - Any secret key ever should not be in the source code, this will need to be turned into configuration

@@ -74,6 +74,7 @@
     <Content Include="templates\contact.html" />
     <Content Include="templates\create.html" />
     <Content Include="templates\index.html" />
+    <Content Include="templates\dictate.html" />
     <Content Include="templates\infer.html" />
     <Content Include="templates\learn.html" />
     <Content Include="templates\login.html" />
@@ -93,6 +94,7 @@
     <Compile Include="controllers\dcm\__init__.py" />
     <Compile Include="controllers\Decision.py" />
     <Compile Include="controllers\Graph.py" />
+    <Compile Include="controllers\Dictate.py" />
     <Compile Include="controllers\Infer.py" />
     <Compile Include="controllers\Learn.py" />
     <Compile Include="controllers\LoginForm.py" />
