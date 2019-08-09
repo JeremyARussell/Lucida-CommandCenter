@@ -6,7 +6,7 @@ from AccessManagement import login_required
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 
 user = Blueprint('user', __name__, template_folder='templates')
-secret = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+secret = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT' #TODO - ANOTHER SECRET TO REMOVE
 
 @user.route('/signup', methods=['GET', 'POST'])
 def signup_route():
